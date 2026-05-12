@@ -1,0 +1,119 @@
+---
+title: Changelog
+description: Stay updated with the latest releases, new features, and improvements in Applicious.
+---
+
+## Latest Releases
+
+Stay informed about new features, improvements, and fixes in Applicious. We release updates regularly to enhance your smart farming experience.
+
+<Callout kind="info">
+  Check the [release notes](https://github.com/your-org/applicious/releases) on GitHub for full details and migration guides.
+</Callout>
+
+<Update label="2024-10-15" description="v1.2.0" tags={["feature", "improvement"]}>
+## New Features
+
+- Added compliance tracking module with automated reporting for biosecurity and regulatory standards.
+- Introduced voice-to-task AI enhancements for faster field data entry.
+- New inventory management dashboard with real-time stock alerts.
+
+## Improvements
+
+- Optimized AI crop diagnostics for better accuracy in horticulture and broadacre operations.
+- Enhanced mobile app performance for offline workflows.
+
+## Bug Fixes
+
+- Fixed GPS verification issues during specialist visits.
+- Resolved sync errors for multi-organization data isolation.
+</Update>
+
+<Update label="2024-09-20" description="v1.1.0" tags={["feature", "bugfix"]}>
+## New Features
+
+- Launched AI Suite with intelligent insights for yield prediction and traceability.
+- Added HRM module for managing farm staff schedules and training records.
+- Integrated fuel and finance tracking with automated expense categorization.
+
+## Bug Fixes
+
+- Corrected beneficiary group management sync problems.
+- Fixed audit trail logging for enterprise role-based access.
+</Update>
+
+<Update label="2024-08-10" description="v1.0.0" tags={["feature", "breaking"]}>
+## New Features
+
+- Initial release of core platform modules: field ops, inventory, and compliance.
+- Purpose-built support for broadacre, dairy, and mixed farming operations.
+- Enterprise-grade security with data isolation and GPS-verified activities.
+
+## Breaking Changes
+
+- Updated API authentication to use `{API_KEY}` headers exclusively.
+- Restructured module configurations for modular activation.
+</Update>
+
+## Upgrade Instructions
+
+Follow these steps to upgrade your Applicious instance safely.
+
+<Steps>
+  <Step title="Backup Data" icon="database">
+    Create a full backup of your current installation.
+
+````bash
+pg_dump -U youruser applicious_db > applicious_backup_$(date +%Y%m%d).sql
+````
+  </Step>
+  <Step title="Update Package" icon="download">
+    Install the latest version using your package manager.
+
+    <CodeGroup tabs="npm,yarn">
+````bash
+npm install applicious@latest
+````
+````bash
+yarn add applicious@latest
+````
+    </CodeGroup>
+  </Step>
+  <Step title="Run Migrations" icon="settings">
+    Execute database migrations.
+
+````bash
+npx applicious migrate
+````
+  </Step>
+  <Step title="Restart Services" icon="refresh-cw">
+    Restart your applicious services and verify functionality.
+  </Step>
+</Steps>
+
+<Callout kind="tip">
+  Test in a staging environment first. Review migration notes in each release for potential impacts.
+</Callout>
+
+## Upcoming Roadmap
+
+Discover what's coming next to Applicious.
+
+<Columns cols={2}>
+  <Card title="Q4 2024" icon="calendar" href="/roadmap/q4">
+    Aquaculture and apiary module expansions with advanced AI analytics.
+  </Card>
+  <Card title="Q1 2025" icon="zap" href="/roadmap/q1">
+    Full webhook support for third-party integrations and real-time notifications.
+  </Card>
+</Columns>
+
+<Expandable title="Detailed Roadmap" default-open="false">
+  Explore our public roadmap on GitHub for voting and feature requests.
+
+  | Quarter | Key Initiatives | Status |
+  |---------|-----------------|--------|
+  | Q4 2024 | AI enhancements | Planned |
+  | Q1 2025 | Webhook APIs    | In Progress |
+  | Q2 2025 | Global scaling  | Research |
+</Expandable>

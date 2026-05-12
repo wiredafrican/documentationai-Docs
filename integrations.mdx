@@ -1,0 +1,184 @@
+---
+title: Integrations in Applicious
+description: Learn how to connect Applicious with external tools, services, and APIs to enhance your farm management workflow.
+---
+
+## Overview
+
+Applicious supports seamless integrations with third-party services, webhooks, APIs, and partner tools. Connect your farm management data to accounting software, weather services, trading platforms, and more. This guide covers setup processes, code examples, and best practices to automate workflows like inventory syncing, real-time alerts, and data exports.
+
+<Callout kind="tip">
+  Start with the [Applicious API documentation](/api-reference) for full endpoint details.
+</Callout>
+
+## Popular Third-Party Integrations
+
+Use these pre-built connections to extend Applicious functionality without custom code.
+
+<Columns cols={3}>
+  <Card title="QuickBooks" icon="dollar-sign" href="https://quickbooks.intuit.com/">
+    Sync inventory, expenses, and invoices automatically.
+  </Card>
+  <Card title="Weather API" icon="cloud-rain" href="https://openweathermap.org/api">
+    Pull real-time weather data into crop planning modules.
+  </Card>
+  <Card title="Google Sheets" icon="file-spreadsheet" href="https://sheets.google.com">
+    Export yield reports and beneficiary lists effortlessly.
+  </Card>
+</Columns>
+
+## Setting Up Webhooks
+
+Configure webhooks to receive real-time updates on events like harvest completions or inventory changes.
+
+<Steps>
+  <Step title="Create Webhook" icon="settings">
+    Navigate to Settings > Integrations > Webhooks. Enter your endpoint URL.
+  </Step>
+  <Step title="Select Events" icon="zap">
+    Choose events such as `harvest.complete` or `inventory.low`.
+  </Step>
+  <Step title="Test Connection" icon="play">
+    Send a test payload to verify delivery.
+  </Step>
+</Steps>
+
+Here is an example webhook payload for a low inventory alert:
+
+<Request tabs="JSON" show-lines="true">
+  ```json
+  {
+    "event": "inventory.low",
+    "farmId": "farm-123",
+    "item": "fertilizer",
+    "quantity": 15,
+    "threshold": 20,
+    "timestamp": "2024-10-15T10:30:00Z"
+  }
+  ```
+</Request>
+
+<Callout kind="alert">
+  Secure your webhook endpoints with HMAC signatures using the `X-Applicious-Signature` header.
+</Callout>
+
+## API Access for Custom Development
+
+Build custom integrations using the Applicious REST API at `https://api.example.com/v1`.
+
+### Authentication
+
+Use API keys for authentication. Generate one in your dashboard.
+
+<ParamField header="Authorization" param-type="string" required="true">
+  Bearer `{YOUR_API_KEY}`
+</ParamField>
+
+### Fetch Farm Inventory
+
+<CodeGroup tabs="JavaScript,Python">
+  ```javascript
+  const response = await fetch('https://api.example.com/v1/farms/farm-123/inventory', {
+    headers: {
+      'Authorization': 'Bearer YOUR_API_KEY'
+    }
+  });
+  const data = await response.json();
+  console.log(data);
+  ```
+  ```python
+  import requests
+  headers = {'Authorization': 'Bearer YOUR_API_KEY'}
+  response = requests.get('https://api.example.com/v1/farms/farm-123/inventory', headers=headers)
+  data = response.json()
+  print(data)
+  ```
+</CodeGroup>
+
+<Response tabs="200">
+  ```json
+  {
+    "items": [
+      {
+        "id": "item-456",
+        "name": "Corn Seeds",
+        "quantity": 500,
+        "unit": "kg"
+      }
+    ]
+  }
+  ```
+</Response>
+
+## Data Import and Export
+
+Import historical data or export reports using these formats.
+
+<Tabs>
+  <Tab title="CSV Import" icon="upload">
+    Upload crop yield data via the dashboard.
+
+    ````csv
+    farmId,item,quantity,yieldDate
+    farm-123,corn,500,2024-10-15
+    farm-124,wheat,300,2024-10-14
+    ````
+
+    Follow these steps:
+
+    1. Prepare your CSV with headers.
+    2. Go to Data > Import.
+    3. Select file and map columns.
+
+  </Tab>
+  <Tab title="JSON Export" icon="download">
+    Export beneficiary lists programmatically.
+
+    <CodeGroup tabs="cURL,JavaScript">
+      ```bash
+      curl -H "Authorization: Bearer YOUR_API_KEY" \
+        https://api.example.com/v1/beneficiaries/export \
+        -o beneficiaries.json
+      ```
+      ```javascript
+      const fs = require('fs');
+      const response = await fetch('https://api.example.com/v1/beneficiaries/export', {
+        headers: { 'Authorization': 'Bearer YOUR_API_KEY' }
+      });
+      const data = await response.json();
+      fs.writeFileSync('beneficiaries.json', JSON.stringify(data));
+      ```
+    </CodeGroup>
+  </Tab>
+</Tabs>
+
+## Partner Integrations for Trading Accounts
+
+Connect with trading partners for automated yield verification and payments.
+
+<Expandable title="Advanced Trading Setup" default-open="false">
+  Link trading accounts via OAuth. Contact support@applicious.com for partner access.
+
+  Example flow:
+
+  ```mermaid
+  sequenceDiagram
+      User->>Applicious: Initiate OAuth
+      Applicious->>Partner: Redirect to auth
+      Partner->>User: Approve
+      User->>Applicious: Callback with token
+      Applicious->>Partner: Verify yield data
+  ```
+
+  Use the `https://api.example.com/v1/trading/link` endpoint.
+</Expandable>
+
+## Next Steps
+
+<Card title="API Reference" icon="code" href="/api-reference">
+  Dive into all endpoints and schemas.
+</Card>
+
+<Card title="Custom Webhook Guide" icon="zap" href="/webhooks">
+  Advanced webhook filtering and retries.
+</Card>

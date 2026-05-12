@@ -1,0 +1,147 @@
+---
+title: Getting Started with Applicious
+description: Quickly set up your account and take your first steps in using Applicious to manage farm operations efficiently.
+---
+
+## Prerequisites
+
+Before starting, ensure you have:
+
+- A valid email address for account creation
+- Basic farm details like name, location, and operation type (broadacre, horticulture, etc.)
+- A modern web browser (Chrome, Firefox, Safari) or mobile device for the app
+- Stable internet for initial setup (offline mode available later)
+
+<Callout kind="info">
+  No credit card required for the free trial. You can upgrade anytime from the dashboard.
+</Callout>
+
+## Sign Up for Free Trial
+
+Get started in under 2 minutes.
+
+<Steps>
+  <Step title="Visit Applicious" icon="globe">
+    Go to [https://app.applicious.com/signup](https://app.applicious.com/signup).
+  </Step>
+  <Step title="Enter Details" icon="user">
+    Provide your email, farm name, and country. Accept the terms.
+  </Step>
+  <Step title="Verify Email" icon="mail">
+    Check your inbox and click the verification link. This enables full access.
+  </Step>
+</Steps>
+
+## Log In and Dashboard Tour
+
+After verification, log in at [https://app.applicious.com/login](https://app.applicious.com/login).
+
+The dashboard shows:
+
+- **Overview**: Key metrics like active modules and recent activities
+- **Modules**: Quick access to farm management tools
+- **Insights**: AI-powered recommendations for your operation
+
+<Tabs>
+  <Tab title="Web Dashboard" icon="monitor">
+    Use the left sidebar for navigation. Click `Overview` to see farm stats.
+  </Tab>
+  <Tab title="Mobile Dashboard" icon="smartphone">
+    Download the app first (next section). Pinch to zoom on field maps.
+  </Tab>
+</Tabs>
+
+## Configure Your Farm Profile
+
+Set up your operation for personalized insights.
+
+<Steps>
+  <Step title="Access Settings" icon="settings">
+    From dashboard, go to `Farm > Profile`.
+  </Step>
+  <Step title="Add Details" icon="map-pin">
+    Enter location, operation type, and acreage. Enable GPS for field mapping.
+  </Step>
+  <Step title="Save and Sync" icon="save">
+    Click `Save`. Data syncs across devices.
+  </Step>
+</Steps>
+
+Example profile configuration:
+
+<CodeGroup tabs="JSON,Form">
+  ```json
+  {
+    "farmName": "Green Acres Farm",
+    "location": {
+      "lat": -33.8688,
+      "lng": 151.2093
+    },
+    "operationType": "broadacre",
+    "acreage": 500
+  }
+  ```
+  ```html
+  <form>
+    <input name="farmName" value="Green Acres Farm" />
+    <input name="operationType" value="broadacre" />
+    <input name="acreage" type="number" value="500" />
+  </form>
+  ```
+</CodeGroup>
+
+## Activate Core Modules
+
+Enable essential tools for your farm.
+
+<Columns cols={2}>
+  <Card title="Field Ops" icon="map" href="/docs/field-ops">
+    Track activities, GPS visits, and voice-to-task entries.
+  </Card>
+  <Card title="Inventory" icon="package" href="/docs/inventory">
+    Manage fuel, seeds, and supplies with traceability.
+  </Card>
+  <Card title="HRM" icon="users" href="/docs/hrm">
+    Handle staff scheduling and compliance.
+  </Card>
+  <Card title="AI Insights" icon="zap" href="/docs/ai-suite">
+    Get crop diagnostics and yield predictions.
+  </Card>
+</Columns>
+
+From dashboard: `Modules > Activate` and select from the list.
+
+## Set Up Mobile App for Offline Use
+
+Download for field work.
+
+<Tabs>
+  <Tab title="iOS" icon="apple">
+    ```bash
+    Open App Store > Search "Applicious" > Install
+    ```
+    Enable offline mode in `Settings > Offline`.
+  </Tab>
+  <Tab title="Android" icon="android">
+    ```bash
+    Open Play Store > Search "Applicious" > Install
+    ```
+    Grant GPS and storage permissions.
+  </Tab>
+</Tabs>
+
+<Callout kind="tip">
+  Offline mode syncs data when back online. Test by recording a field visit without connection.
+</Callout>
+
+## Next Steps
+
+<Expandable title="Explore Advanced Features" default-open="false">
+  Dive into modules like biosecurity tracking or financial reporting. Check the [full docs](/introduction).
+</Expandable>
+
+You're ready to manage your farm smarter! For support, use the in-app chat.
+
+<Callout kind="success">
+  Complete these steps to unlock AI insights tailored to your operation.
+</Callout>
